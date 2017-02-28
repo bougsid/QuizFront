@@ -1,0 +1,13 @@
+<div *ngIf="quiz!=null" class="panel panel-primary">
+  <!-- Default panel contents -->
+  <div  class="panel-heading">{{quiz.title}}</div>
+  <div class="panel-body">
+    <question *ngIf="filtredQuestion!=null" [question]="filtredQuestion" [mode]="mode"></question>
+    <button (click)="previousQuestion()" class="btn btn-primary" type="submit">Previous</button>
+    <button (click)="nextQuestion()" class="btn btn-primary" type="submit">Next</button>
+    <button *ngIf="filtredQuestionIndex==quiz.questions.length-1" (click)="submitQuiz()" class="btn btn-primary"
+            type="submit">Submit
+    </button>
+  </div>
+</div>
+

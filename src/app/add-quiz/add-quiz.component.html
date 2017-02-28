@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="page-header">Add Quiz</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <form (ngSubmit)="addQuiz($event)">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input name="title" [(ngModel)]="quiz.title" type="text" class="form-control" id="title" required>
+      </div>
+      <button class="btn btn-default pull-right" type="button" (click)="addNewQuestion()">Add Question</button>
+      <div class="questions-section" *ngFor="let question of quiz.questions">
+        <add-question [question]="question"></add-question>
+      </div>
+      <button type="submit" class="btn btn-success">Submit Quiz</button>
+    </form>
+  </div>
+</div>

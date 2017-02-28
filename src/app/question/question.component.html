@@ -1,0 +1,19 @@
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">{{question.content}}</div>
+  <div class="panel-body">
+    <div class="row text-left options" *ngFor="let option of question.options">
+      <div class="col-md-12">
+        <div class="option">
+          <label style="width: 100%"
+                 [class]="(mode=='result') ? (option.answer==true) ? (option.answer!=option.correct)?'alert-danger':'alert-success':'':''"
+                 for="{{option.id}}">
+            <input id="{{option.id}}" type="checkbox" [(ngModel)]="option.answer"
+                   (change)="onSelect(question, option);"/>
+            {{option.content}}
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
