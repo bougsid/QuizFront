@@ -40,7 +40,9 @@ export class QuizzesComponent implements OnInit {
     selectedUsers.forEach(user => {
       let quizUserAssociation = new QuizUserAssociation();
       quizUserAssociation.quiz = this.quiz;
+      quizUserAssociation.quizId = this.quiz.id;
       quizUserAssociation.user = user;
+      quizUserAssociation.userId = user.id;
       quizUserAssociations.push(quizUserAssociation);
       // if(!user.quizzes) user.quizzes = new Array<QuizUserAssociation>();
       // user.quizzes.push(quizUserAssociation);

@@ -14,11 +14,11 @@ import {AdminGuard} from "./auth/admin-guard.service";
 import {InformationComponent} from "./information/information.component";
 import {QuizzesComponent} from "./quizzes/quizzes.component";
 import {UsersComponent} from "./users/users.component";
+import {LoggedInGuard} from "./auth/loggedin-guard.service";
 
 const routes = [
   {
-    path: '',
-    component: LoginComponent
+    path: 'login', component: LoginComponent, canActivate: [LoggedInGuard]
   },
   {
     path: 'home',

@@ -7,12 +7,12 @@ import { CanActivate } from '@angular/router';
 import { LoginService } from '../login/login.service';
 
 @Injectable()
-export class AdminGuard implements CanActivate {
+export class LoggedInGuard implements CanActivate {
 
   constructor(private loginService: LoginService, private router: Router) {}
 
   canActivate() {
-    if(this.loginService.loggedIn() && this.loginService.isAdmin()) {
+    if(!this.loginService.loggedIn()) {
       return true;
     } else {
       this.router.navigate(['home']);//To change

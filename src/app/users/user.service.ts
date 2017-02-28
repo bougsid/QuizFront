@@ -26,6 +26,7 @@ export class UserService {
   }
 
   saveUsers(quizUserAssociations: Array<QuizUserAssociation>) {
+    console.log(quizUserAssociations);
     var cache = [];
     let headers = new Headers({'Content-Type': 'application/json'}); // ... Set content type to JSON
     let options = new RequestOptions({headers: headers}); // Create a request option
