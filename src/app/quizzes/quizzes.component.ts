@@ -27,6 +27,7 @@ export class QuizzesComponent implements OnInit {
     this.quizService.getQuizzes(this.currentPage - 1, this.itemsPerPage).subscribe(result => {
       this.quizzes = result;
       this.totalItems = this.quizService.totalItems;
+      console.log(this.quizzes);
     });
   }
 

@@ -2,6 +2,8 @@ import {Component, OnInit, Input} from '@angular/core';
 import {QuizService} from "./quiz.service";
 import {Question} from "../add-question/question";
 import {Quiz} from "../add-quiz/quiz";
+import {ActivatedRoute} from "@angular/router";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'quiz',
@@ -9,7 +11,6 @@ import {Quiz} from "../add-quiz/quiz";
   styleUrls: ['./quiz.component.css']
 })
 export class QuizComponent implements OnInit {
-  private quizzes: Array<any>;
   @Input()
   private quiz: Quiz;
 
@@ -18,17 +19,21 @@ export class QuizComponent implements OnInit {
   private filtredQuestion: Question;
 
   private filtredQuestionIndex: number = 0;
+  private timer: number;
 
-  constructor(private quizService: QuizService) {
+  constructor(private quizService: QuizService, private route: ActivatedRoute) {
 
   }
 
   ngOnInit() {
-    this.quizService.getQuizzes(0, 2).subscribe(result => {
-      this.quizzes = result;
-      this.quiz = this.quizzes[0];//To change
+    let id = this.route.snapshot.params['id'];
+    console.log(id);
+    this.quizService.getQuiz(id).subscribe(result => {
+      this.quiz = result;
       this.filtredQuestion = this.quiz.questions[this.filtredQuestionIndex];
-      console.log(this.quizzes);
+      this.timer = this.quiz.duration.seconds;
+      if (this.mode == 'quiz')
+        this.startTimer();
     });
   }
 
@@ -49,7 +54,23 @@ export class QuizComponent implements OnInit {
   submitQuiz() {
     this.quizService.submitQuiz(this.quiz).subscribe(result => {
       this.mode = 'result';
-      alert("Correct Question : " + result.mark);
+      // alert("Correct Question : " + result.mark);
     });
+  }
+
+  private startTimer() {
+    let timer = Observable.timer(0, 1000);
+    let subscription = timer.subscribe(step => {
+      this.timer -= 1;
+      if (this.timer == 0) {
+        this.submitResultWhenTimerEnd(subscription);
+      }
+    });
+  }
+
+  private submitResultWhenTimerEnd(subscription) {
+    subscription.unsubscribe();
+    this.submitQuiz();
+    this.mode = 'result';
   }
 }

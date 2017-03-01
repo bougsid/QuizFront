@@ -4,13 +4,18 @@ import {HomeComponent} from "./home.component";
 import {RouterModule} from "@angular/router";
 import QuizModule from "../quiz/quiz.module";
 import {InformationModule} from "../information/information.module";
+import {UserQuizzesModule} from "../user-quizzes/user-quizzes.module";
+import {SecondsToTimePipeModule} from "../secondsToTimePipe/seconds-to-time-pipe.module";
 
 @NgModule({
   imports: [
     RouterModule,
     CommonModule,
     QuizModule,
-    InformationModule
+    InformationModule,
+    UserQuizzesModule,
+    SecondsToTimePipeModule
+
   ],
   declarations: [
     HomeComponent

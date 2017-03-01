@@ -4,14 +4,18 @@
 import {Injectable} from '@angular/core';
 import {Response} from "@angular/http";
 import {Observable} from "rxjs";
-import { AuthHttp } from 'angular2-jwt';
+import {AuthHttp} from 'angular2-jwt';
+import {InformationService} from "../information/information.service";
+import {QuizUserAssociation} from "../information/QuizUserAssociation";
 @Injectable()
 export class QuizService {
   public totalPages: number;
   public totalItems: number;
   private quizzesApiURL: string = "http://localhost:8080/api/quizzes";
+  private quizApiURL: string = "http://localhost:8080/api/quiz";
 
-  constructor(private http: AuthHttp) {
+
+  constructor(private http: AuthHttp, private informationService: InformationService) {
   }
 
   getQuizzes(page: Number, size: Number): Observable<Array<any>> {
@@ -23,8 +27,18 @@ export class QuizService {
       .catch(this.handleError);
   }
 
+  getQuizzesOfLoggedUser(page: Number, size: Number): Observable<Array<QuizUserAssociation>> {
+    return this.informationService.getInformation();
+  }
+
+  getQuiz(id: number) {
+    return this.http.get(this.quizApiURL + "/" + id)
+      .map(res => this.extractDataQuiz(res))
+      .catch(this.handleError);
+  }
+
   submitQuiz(quiz: any): Observable<any> {
-    return this.http.post(this.quizzesApiURL + "/result", quiz)
+    return this.http.post(this.quizApiURL + "/result", quiz)
       .map(res => {
         return res.json();
       })
@@ -45,11 +59,10 @@ export class QuizService {
     return Observable.throw(errMsg);
   }
 
-  // private extractData(res: Response) {
-  //   let body = res.json();
-  //   this.totalPages = body.totalPages;
-  //   return body.content || {};
-  // }
+  private extractDataQuiz(res: Response) {
+    let body = res.json();
+    return body || {};
+  }
 
   private extractData(res: Response) {
     let body = res.json();

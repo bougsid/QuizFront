@@ -34,7 +34,7 @@ export class LoginComponent {
         console.log(this.token);
         if (this.token) {
           localStorage.setItem('id_token',this.token);
-          this.router.navigate(['./home/quiz']);
+          this.router.navigate(['./home']);
         }
       });
     }

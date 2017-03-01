@@ -31,6 +31,6 @@ export class LoginService {
 
   isAdmin() {
     let token = localStorage.getItem('id_token');
-    return this.jwtHelper.decodeToken(token).roles.indexOf('admin')>=0;
+    return this.jwtHelper.decodeToken(token).roles.indexOf('admin') >= 0;
   }
 }

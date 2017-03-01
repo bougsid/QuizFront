@@ -6,6 +6,9 @@ import QuestionModule from "../question/question.module";
 import {QuestionComponent} from "../question/question.component";
 import {FormsModule} from "@angular/forms";
 import {AuthGuard} from "../auth/auth-guard.service";
+import {InformationService} from "../information/information.service";
+import {RouterModule} from "@angular/router";
+import {SecondsToTimePipeModule} from "../secondsToTimePipe/seconds-to-time-pipe.module";
 /**
  * Created by bougsid.ayoub on 2/24/2017.
  */
@@ -16,10 +19,14 @@ import {AuthGuard} from "../auth/auth-guard.service";
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    RouterModule,
+    SecondsToTimePipeModule
+
   ],
   providers: [
     QuizService,
+    InformationService
   ]
 })
 

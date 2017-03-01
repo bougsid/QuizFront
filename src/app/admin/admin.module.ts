@@ -6,6 +6,7 @@ import AddQuestionModule from "../add-question/add-question.module";
 import {RouterModule} from "@angular/router";
 import {QuizzesModule} from "../quizzes/quizzes.module";
 import {UsersModule} from "../users/users.module";
+import {SecondsToTimePipeModule} from "../secondsToTimePipe/seconds-to-time-pipe.module";
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import {UsersModule} from "../users/users.module";
     AddQuizModule,
     AddQuestionModule,
     QuizzesModule,
-    UsersModule
+    UsersModule,
+
   ],
   declarations: [AdminComponent]
 })

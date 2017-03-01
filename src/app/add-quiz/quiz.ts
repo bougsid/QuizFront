@@ -5,7 +5,13 @@ import {Question} from "../add-question/question";
 export class Quiz {
   id: number;
   title: string;
-  timeBox : any;
+  duration: {
+    seconds,
+    nanos
+  } = {
+    seconds:0,
+    nanos : 0
+  };
   questions: Array<Question> = new Array();
 
 }

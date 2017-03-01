@@ -10,6 +10,20 @@
         <label for="title">Title</label>
         <input name="title" [(ngModel)]="quiz.title" type="text" class="form-control" id="title" required>
       </div>
+      <div class="form-group">
+        <label for="title">Duration</label>
+        <div class="row">
+          <div class="col-md-4">
+            <input class="form-control" name="days" type="number" [(ngModel)]="duration.days" required>
+          </div>
+          <div class="col-md-4">
+            <input class="form-control" name="hours" type="number" placeholder="ee" [(ngModel)]="duration.hours" required>
+          </div>
+          <div class="col-md-4">
+            <input class="form-control" name="minutes" type="number" [(ngModel)]="duration.minutes" required>
+          </div>
+        </div>
+      </div>
       <button class="btn btn-default pull-right" type="button" (click)="addNewQuestion()">Add Question</button>
       <div class="questions-section" *ngFor="let question of quiz.questions">
         <add-question [question]="question"></add-question>

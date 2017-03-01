@@ -4,12 +4,14 @@
 import {Injectable} from '@angular/core';
 import {Response, Http, Headers, RequestOptions, RequestMethod} from "@angular/http";
 import {Observable} from "rxjs";
+import { AuthHttp } from 'angular2-jwt';
+
 @Injectable()
 export class AddQuizService {
   private totalPages: number;
   private questionsApiURL: string = "http://localhost:8080/api/quiz";
 
-  constructor(private http: Http) {
+  constructor(private http: AuthHttp) {
   }
 
   addQuiz(quiz: any): Observable<any> {

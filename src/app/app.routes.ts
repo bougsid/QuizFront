@@ -15,6 +15,7 @@ import {InformationComponent} from "./information/information.component";
 import {QuizzesComponent} from "./quizzes/quizzes.component";
 import {UsersComponent} from "./users/users.component";
 import {LoggedInGuard} from "./auth/loggedin-guard.service";
+import {UserQuizzesComponent} from "./user-quizzes/user-quizzes.component";
 
 const routes = [
   {
@@ -25,7 +26,8 @@ const routes = [
     component: HomeComponent,
     children: [
       {path: '', component: InformationComponent},
-      {path: 'quiz', component: QuizComponent},
+      {path: 'quizzes', component: UserQuizzesComponent},
+      {path: 'quiz/:id', component: QuizComponent},
     ],
     canActivate: [AuthGuard]
   },

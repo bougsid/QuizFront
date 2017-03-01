@@ -1,0 +1,23 @@
+<div class="horizontal-scroll">
+    <table class="table table-hover">
+        <thead>
+        <tr class="black-muted-bg">
+            <th *ngFor="let column of columns" class="align-right">{{column.value}}</th>
+            <th class="table-arr"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let element of data, let i=index" [class.tr-active]="i==index"
+            [class.achat]="element.type=='Achat'"
+            [class.vente]="element.type=='Vente'"
+            class="no-top-border">
+            <td *ngFor="let column of columns" class="align-right">{{element[column.key]}}</td>
+            <td *ngIf="button" class="align-right">
+                <button (click)="sendEvent(element['code'],i)" class="btn btn-default  btn-xs" type="button">
+                    {{button}}
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
