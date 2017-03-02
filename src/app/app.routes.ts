@@ -18,29 +18,31 @@ import {LoggedInGuard} from "./auth/loggedin-guard.service";
 import {UserQuizzesComponent} from "./user-quizzes/user-quizzes.component";
 
 const routes = [
-  {
-    path: 'login', component: LoginComponent, canActivate: [LoggedInGuard]
-  },
-  {
-    path: 'home',
-    component: HomeComponent,
-    children: [
-      {path: '', component: InformationComponent},
-      {path: 'quizzes', component: UserQuizzesComponent},
-      {path: 'quiz/:id', component: QuizComponent},
-    ],
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'admin',
-    component: AdminComponent,
-    children: [
-      {path: '', component: QuizzesComponent},
-      {path: 'add-quiz', component: AddQuizComponent},
-      {path: 'add-question', component: AddQuestionComponent},
-      {path: 'users', component: UsersComponent}
-    ],
-    canActivate: [AdminGuard]
-  }];
+    {
+        path: 'login', component: LoginComponent, canActivate: [LoggedInGuard]
+    },
+    {
+        path: 'home',
+        component: HomeComponent,
+        children: [
+            {path: '', redirectTo: 'quizzes/all', pathMatch: 'full',},
+            {path: 'quizzes', redirectTo: 'quizzes/all', pathMatch: 'full', name: 'AllQuizzes'},
+            {path: 'quizzes/:type', component: UserQuizzesComponent, name: 'ActiveQuizzes'},
+            {path: 'quiz/:id', component: QuizComponent},
+        ],
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'admin',
+        component: AdminComponent,
+        children: [
+            {path: '', redirectTo: 'quizzes', pathMatch: 'full'},
+            {path: 'quizzes', component: QuizzesComponent},
+            {path: 'add-quiz', component: AddQuizComponent},
+            {path: 'add-question', component: AddQuestionComponent},
+            {path: 'users', component: UsersComponent}
+        ],
+        canActivate: [AdminGuard]
+    }];
 
- export default RouterModule.forRoot(routes);
+export default RouterModule.forRoot(routes);

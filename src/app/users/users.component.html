@@ -10,7 +10,7 @@
           <thead>
           <tr>
             <th>Username</th>
-            <th *ngIf="mode==='quizzes'">Select</th>
+            <th width="10%" *ngIf="mode==='quizzes'">Select</th>
           </tr>
           </thead>
           <tbody>
@@ -24,7 +24,8 @@
         <pagination [totalItems]="totalItems" [itemsPerPage]="itemsPerPage" [(ngModel)]="currentPage"
                     (pageChanged)="loadPage($event)"></pagination>
         <div class="modal-footer">
-          <button *ngIf="mode==='quizzes'" (click)="emitSelectedUsers()" type="button" class="btn btn-primary">Save
+          <button onclick="$('#myModal').modal('hide');" *ngIf="mode==='quizzes'" (click)="emitSelectedUsers()" type="button" class="btn btn-primary">
+            Save
             changes
           </button>
         </div>

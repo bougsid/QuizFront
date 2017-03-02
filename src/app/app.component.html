@@ -1,3 +1,2 @@
   <router-outlet></router-outlet>
-  <button id="login" *ngIf="!loginService.loggedIn()">Log In</button>
-  <button id="logout" (click)="logout()" *ngIf="loginService.loggedIn()">Log Out</button>
+  <button class="btn btn-danger" id="logout" (click)="logout()" *ngIf="loginService.loggedIn()">Log Out</button>

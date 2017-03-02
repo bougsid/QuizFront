@@ -12,7 +12,7 @@
             <th>Title</th>
             <th>Duration</th>
             <th>Mark</th>
-            <th></th>
+            <th width="10%"></th>
           </tr>
           </thead>
           <tbody>
@@ -20,7 +20,7 @@
             <td>{{quizUserAssociation.quiz.title}}</td>
             <td>{{quizUserAssociation.quiz.duration.seconds | secondsToTime}}</td>
             <td>{{quizUserAssociation.mark}}</td>
-            <td><a [routerLink]="['../quiz',quizUserAssociation.quiz.id]"  (click)="startQuiz(quizUserAssociation.quiz)" role="button" class="btn btn-large btn-primary" data-toggle="modal">Start Quiz</a>
+            <td><a [routerLink]="['../../quiz',quizUserAssociation.quiz.id]"  (click)="startQuiz(quizUserAssociation.quiz)" role="button" class="btn btn-large btn-primary" data-toggle="modal">Start Quiz</a>
             </td>
           </tr>
           </tbody>

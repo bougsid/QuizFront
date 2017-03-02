@@ -31,7 +31,9 @@ export class AddQuizComponent implements OnInit {
   addQuiz(event) {
     this.quiz.duration.seconds = this.durationToSeconds();
     console.log(JSON.stringify(this.quiz));
-    this.addQuizService.addQuiz(this.quiz).subscribe(result => console.log(result));
+    this.addQuizService.addQuiz(this.quiz).subscribe(result => {
+      this.quiz = new Quiz();
+    });
   }
 
   addNewQuestion() {

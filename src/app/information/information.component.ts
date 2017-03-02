@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {InformationService} from "./information.service";
 import {QuizUserAssociation} from "./QuizUserAssociation";
+import {QuizService} from "../quiz/quiz.service";
 
 @Component({
   selector: 'app-information',
@@ -11,14 +12,14 @@ export class InformationComponent implements OnInit {
 
   private informations: Array<QuizUserAssociation>;
 
-  constructor(private informationService: InformationService) {
+  constructor(private quizService : QuizService) {
   }
 
   ngOnInit() {
-    this.informationService.getInformation().subscribe(result => {
-      this.informations = result;
-      console.log(this.informations);
-    });
+    // this.quizService.getQuizzesOfLoggedUser().subscribe(result => {
+    //   this.informations = result;
+    //   console.log(this.informations);
+    // });
   }
 
 }

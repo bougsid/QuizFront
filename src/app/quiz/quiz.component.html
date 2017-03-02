@@ -1,15 +1,19 @@
 <div *ngIf="quiz!=null" class="panel panel-primary">
-  <!-- Default panel contents -->
-  <div class="panel-heading">{{quiz.title}}
-    <span style="float: right">{{timer | secondsToTime}}</span>
-  </div>
-  <div class="panel-body">
-    <question *ngIf="filtredQuestion!=null" [question]="filtredQuestion" [mode]="mode"></question>
-    <button (click)="previousQuestion()" class="btn btn-primary" type="submit">Previous</button>
-    <button (click)="nextQuestion()" class="btn btn-primary" type="submit">Next</button>
-    <button *ngIf="filtredQuestionIndex==quiz.questions?.length-1" (click)="submitQuiz()" class="btn btn-primary"
-            type="submit">Submit
-    </button>
-  </div>
+    <!-- Default panel contents -->
+    <div class="panel-heading">{{quiz.title}}
+        <span style="float: right">{{timer | secondsToTime}}</span>
+    </div>
+    <div class="panel-body">
+        <question *ngIf="filtredQuestion!=null" [question]="filtredQuestion" [mode]="mode"></question>
+        <div style="text-align: center">
+            <button (click)="previousQuestion()" class="btn btn-primary" type="submit">Previous</button>
+            <button (click)="nextQuestion()" class="btn btn-primary" type="submit">Next</button>
+        </div>
+        <button style="float: right" *ngIf="filtredQuestionIndex==quiz.questions?.length-1 && mode!='result'" (click)="submitQuiz()"
+                class="btn btn-success"
+                type="submit">Submit
+        </button>
+        <h3 style="text-align: center" *ngIf="mode=='result'">{{result}}/{{quiz?.questions?.length}}</h3>
+    </div>
 </div>
 
