@@ -1,0 +1,70 @@
+<div class="ui grid">
+  <div class="five wide column">
+    <div class="ui cards">
+      <div class="card">
+        <div class="content">
+          <div class="header">
+            Ayoub BOUGSID
+          </div>
+          <div class="description">
+            username
+          </div>
+        </div>
+        <div class="extra content">
+          <button class="mini ui blue button">Profile</button>
+          <button class="mini ui right floated green button">Send Feedback</button>
+        </div>
+      </div>
+      <div class="ui card">
+        <div class="content">
+          <div class="header">Java Basics</div>
+          <div class="meta">
+            <span>2 days ago</span>
+            <a>Animals</a>
+          </div>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="eleven wide column">
+    <div class="ui grid">
+      <div class="six wide column">
+        <div class="ui statistic">
+          <div class="label">
+            Score
+          </div>
+          <div class="value">
+            {{score?.score | number : '1.0-2'}}%
+          </div>
+          <div class="text">
+            10 of 53 questions
+          </div>
+        </div>
+      </div>
+      <div class="ten wide column">
+        <div *ngFor="let subject of score?.scoreBySubject | keys" class="ui tiny green progress">
+          <div class="text">{{subject.key}} - {{subject.value}}</div>
+          <div [style.width]="subject.value + '%'" class="bar"></div>
+        </div>
+      </div>
+    </div>
+    <div class="ui divider"></div>
+    <table class="ui single line table">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Level</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let level of score?.scoreByLevel | keys, let i=index">
+          <td><div class="ui grey horizontal label">#{{i+1}}</div></td>
+          <td>{{level.key}}</td>
+          <td>{{level.value}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

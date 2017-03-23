@@ -8,7 +8,8 @@ import {FormsModule} from "@angular/forms";
 import {AuthGuard} from "../auth/auth-guard.service";
 import {InformationService} from "../information/information.service";
 import {RouterModule} from "@angular/router";
-import {SecondsToTimePipeModule} from "../secondsToTimePipe/seconds-to-time-pipe.module";
+import { SecondsToTimePipeModule } from "../secondsToTimePipe/seconds-to-time-pipe.module";
+import { ScoreService } from "../score/score.service";
 /**
  * Created by bougsid.ayoub on 2/24/2017.
  */
@@ -26,6 +27,7 @@ import {SecondsToTimePipeModule} from "../secondsToTimePipe/seconds-to-time-pipe
   ],
   providers: [
     QuizService,
+    ScoreService,
     InformationService
   ]
 })

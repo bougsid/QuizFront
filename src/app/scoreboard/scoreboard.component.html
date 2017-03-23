@@ -1,0 +1,16 @@
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Score</th>
+      <th class="two wide right aligned"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{user.username}}</td>
+      <td>{{quizId}}</td>
+      <td><a [routerLink]="['/admin/score/',user.id,quizId]" class="ui green basic button">Repport</a>
+    </tr>
+  </tbody>
+</table>

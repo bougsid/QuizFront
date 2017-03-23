@@ -1,34 +1,41 @@
-<div class="add-question">
-  <h1>Add Question</h1>
-  <form (ngSubmit)="addQuestion($event)">
-
-    <div class="form-group">
+<h1>Add Question</h1>
+<form (ngSubmit)="addQuestion($event)">
+  <div class="ui form">
+    <div class="field">
       <label for="question">Question</label>
-      <input name="content" [(ngModel)]="question.content" type="text" class="form-control"
-             id="question" required>
+      <input name="content" [(ngModel)]="question.content" type="text" class="form-control" id="question" required>
     </div>
-    <div *ngFor="let option of question.options, let index=index">
-      <div class="col-md-5">
-        <div class="form-group">
-          <label for="option2">Option 1</label>
-          <input name="option2" [(ngModel)]="option.content" type="text" class="form-control" id="option2" required>
+
+    <div class="two fields">
+      <div class="field">
+        <label>Subject</label>
+        <combo-box name="subject" [listData]="subjects" [displayField]="'name'" [(ngModel)]="question.subject"> </combo-box>
+      </div>
+      <div class="field">
+        <label>Level</label>
+        <combo-box name="level" [listData]="levels" [displayField]="'name'" [valueField]="'level'" [(ngModel)]="question.level">
+        </combo-box>
+      </div>
+    </div>
+
+    <div *ngFor="let option of question.options, let index=index" class="two fields">
+      <div class="fourteen wide field">
+        <div class=" ui left action input">
+          <button (click)="removeQuestion(index)" class="ui teal icon button">
+          <i class="close icon"></i>
+        </button>
+          <input name="option2" [(ngModel)]="option.content" type="text" id="option2" required>
         </div>
       </div>
-      <div class="col-md-1">
-        <div class="form-group">
-          <label for="option2">Correct</label>
-          <label for="{{option.id}}">
-            <input name="option-correct" id="{{option.id}}" type="checkbox" [(ngModel)]="option.correct"/>
-          </label>
-          <button class="btn btn-warning" (click)="removeQuestion(index)">X</button>
+      <div style="padding-top: 9px;" class="two wide field">
+        <div class="ui huge checkbox">
+          <input name="option-correct" id="{{option.id}}" type="checkbox" [(ngModel)]="option.correct">
+          <label>Correct</label>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12">
-        <button class="btn btn-default pull-right" type="button" (click)="addNewOption()">Add Option</button>
-      </div>
-    </div>
-    <!--<button *ngIf="question==null" type="submit" class="btn btn-success pull-right">Submit Question</button>-->
-  </form>
-</div>
+
+  </div>
+  <button class="ui button" type="button" (click)="addNewOption()">Add Option</button>
+  <!--<button *ngIf="question==null" type="submit" class="btn btn-success pull-right">Submit Question</button>-->
+</form>

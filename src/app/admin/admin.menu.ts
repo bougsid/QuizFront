@@ -5,4 +5,5 @@ export const adminMenu = [
   {title: 'Quizzes List', link: 'quizzes', icon: ''},
   {title: 'Add Quiz', link: 'add-quiz', icon: ''},
   {title: 'Users', link: 'users', icon: ''},
+  {title: 'Categories', link: 'categories', icon: ''},
 ];

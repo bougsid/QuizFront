@@ -1,2 +1,10 @@
+<div class="ui menu">
+  <a class="item">Browse</a>
+  <a class="item">Submit</a>
+  <div class="right menu">
+    <a class="item">Sign Up</a>
+    <a class="item">Help</a>
+  </div>
+</div>
   <router-outlet></router-outlet>
   <button class="btn btn-danger" id="logout" (click)="logout()" *ngIf="loginService.loggedIn()">Log Out</button>

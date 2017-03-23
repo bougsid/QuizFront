@@ -1,0 +1,30 @@
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th *ngIf="mode==='quizzes'" class="one wide right aligned">Select</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{user.username}}</td>
+      <td class="one wide right aligned" *ngIf="mode==='quizzes'">
+        <div class="ui checkbox">
+          <input type="checkbox" [(ngModel)]="user.selected" (change)="onSelect(user,user.selected);" />
+          <label></label>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<pagination [totalItems]="totalItems" [itemsPerPage]="itemsPerPage" [(ngModel)]="currentPage" (pageChanged)="loadPage($event)"></pagination>
+
+<div class="actions">
+  <div *ngIf="mode==='quizzes'" class="ui black deny button">
+    Nope
+  </div>
+  <button *ngIf="mode==='quizzes'" class="ui positive right labeled icon button" (click)="emitSelectedUsers()" type="button">
+            Save changes
+   <i class="checkmark icon"></i>
+</button>
+</div>

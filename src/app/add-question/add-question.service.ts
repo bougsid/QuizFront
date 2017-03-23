@@ -1,22 +1,32 @@
 /**
  * Created by bougsid.ayoub on 2/24/2017.
  */
-import {Injectable} from '@angular/core';
-import {Response, Http, Headers, RequestOptions, RequestMethod} from "@angular/http";
-import {Observable} from "rxjs";
+import { Injectable } from '@angular/core';
+import { Response, Http, Headers, RequestOptions, RequestMethod } from "@angular/http";
+import { Observable } from "rxjs/Observable";
+import { Subject } from "./subject";
+import { AuthHttp } from "angular2-jwt/angular2-jwt";
 @Injectable()
 export class AddQuestionService {
   private totalPages: number;
   private questionsApiURL: string = "http://localhost:8080/api/question";
 
-  constructor(private http: Http) {
+  constructor(private http: AuthHttp) {
   }
 
   addQuestion(question: any): Observable<any> {
     console.log(JSON.stringify(question));
-    let headers      = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
-    let options       = new RequestOptions({ headers: headers });
-    return this.http.post(this.questionsApiURL, JSON.stringify(question),options)
+    //let headers      = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+    //let options       = new RequestOptions({ headers: headers });
+    return this.http.post(this.questionsApiURL, JSON.stringify(question))
+      .map(res => {
+        return res.json();
+      })
+      .catch(this.handleError);
+  }
+
+  getSubjects(): Observable<Array<Subject>> {
+    return this.http.get(this.questionsApiURL + "/subjects")
       .map(res => {
         return res.json();
       })
@@ -39,7 +49,7 @@ export class AddQuestionService {
 
   private extractData(res: Response) {
     let body = res.json();
-    this.totalPages = body.totalPages;
+    //this.totalPages = body.totalPages;
     return body.content || {};
   }
 }

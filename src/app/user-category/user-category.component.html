@@ -1,0 +1,27 @@
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th >Add</th>
+      <th >Users</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let category of categories">
+      <td>{{category.name}}</td>
+      <td><a onclick="$('#selectUsersModel').modal('show');" (click)="setCurrentCategory(category)" class="ui green button">Add Users</a>
+        <td><a onclick="$('#selectUsersModel').modal('show');" (click)="getUsersOfCategory(category)" class="ui green button">Show Users</a>
+    </tr>
+  </tbody>
+</table>
+<pagination [totalItems]="totalItems" [itemsPerPage]="itemsPerPage" [(ngModel)]="currentPage" (pageChanged)="loadPage($event)"></pagination>
+
+<div id="selectUsersModel" class="ui modal">
+  <i class="close icon"></i>
+  <div class="header">
+    Select Users
+  </div>
+  <div class="content">
+    <users [mode]="'quizzes'" (selectedUsersEmitter)="addUsersToCategory($event)"></users>
+  </div>
+</div>

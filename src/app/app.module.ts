@@ -26,10 +26,16 @@ import {UsersModule} from "./users/users.module";
 import {UserQuizzesComponent} from './user-quizzes/user-quizzes.component';
 import {SecondsToTimePipe} from "./secondsToTimePipe/SecondsToTimePipe";
 import {SecondsToTimePipeModule} from "./secondsToTimePipe/seconds-to-time-pipe.module";
+import { ScoreboardComponent } from './scoreboard/scoreboard.component';
+import { UserCategoryComponent } from './user-category/user-category.component';
+import { UserTableComponent } from './user-table/user-table.component';
+import { ComboBoxModule } from "ng2-combobox";
+import { ScoreComponent } from './score/score.component';
+import { KeysPipeModule } from "./score/keys-pipe.module";
 @NgModule({
   declarations: [
     AppComponent,
-
+    ScoreComponent,
   ],
   imports: [
     AlertModule.forRoot(),
@@ -39,11 +45,12 @@ import {SecondsToTimePipeModule} from "./secondsToTimePipe/seconds-to-time-pipe.
     RouterModule,
     AuthModule,
     LoginModule,
-
+    ComboBoxModule,
 
     AdminModule,
     HomeModule,
     SecondsToTimePipeModule,
+    KeysPipeModule,
     appRoutes
   ],
   providers: [PaginationConfig],

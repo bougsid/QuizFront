@@ -6,7 +6,8 @@ import AddQuestionModule from "../add-question/add-question.module";
 import {RouterModule} from "@angular/router";
 import {QuizzesModule} from "../quizzes/quizzes.module";
 import {UsersModule} from "../users/users.module";
-import {SecondsToTimePipeModule} from "../secondsToTimePipe/seconds-to-time-pipe.module";
+import { ScoreboardModule } from "../scoreboard/scoreboard.module";
+import { UserCategoryModule } from "../user-category/user-category.module";
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import {SecondsToTimePipeModule} from "../secondsToTimePipe/seconds-to-time-pipe
     AddQuestionModule,
     QuizzesModule,
     UsersModule,
-
+    ScoreboardModule,
+    UserCategoryModule
   ],
   declarations: [AdminComponent]
 })

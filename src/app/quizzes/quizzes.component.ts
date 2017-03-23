@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {QuizService} from "../quiz/quiz.service";
-import {Quiz} from "../add-quiz/quiz";
-import {User} from "../login/User";
-import {QuizUserAssociation} from "../information/QuizUserAssociation";
-import {UserService} from "../users/user.service";
+import { Component, OnInit } from '@angular/core';
+import { QuizService } from "../quiz/quiz.service";
+import { Quiz } from "../add-quiz/quiz";
+import { User } from "../login/User";
+import { QuizUserAssociation } from "../information/QuizUserAssociation";
+import { UserService } from "../users/user.service";
 
 @Component({
   selector: 'app-quizzes',
@@ -15,7 +15,7 @@ export class QuizzesComponent implements OnInit {
   private quizzes: Array<Quiz>;
   private totalItems;
   private currentPage = 1;
-  private itemsPerPage = 3;
+  private itemsPerPage = 1;
   private quiz: Quiz;
 
 
@@ -37,18 +37,15 @@ export class QuizzesComponent implements OnInit {
 
   affectQuizToUsers($event) {
     let selectedUsers: Array<User> = $event;
-    let quizUserAssociations: Array<QuizUserAssociation> = [];
-    selectedUsers.forEach(user => {
-      let quizUserAssociation = new QuizUserAssociation();
-      quizUserAssociation.quiz = this.quiz;
-      quizUserAssociation.quizId = this.quiz.id;
-      quizUserAssociation.user = user;
-      quizUserAssociation.userId = user.id;
-      quizUserAssociations.push(quizUserAssociation);
-      // if(!user.quizzes) user.quizzes = new Array<QuizUserAssociation>();
-      // user.quizzes.push(quizUserAssociation);
-    });
-    this.userService.saveUsers(quizUserAssociations).subscribe(result => {
+    this.quiz.active = true;
+    /*selectedUsers.forEach(user => {
+      if (user.quizzes == null) user.quizzes = new Array<Quiz>();
+      user.quizzes.push(this.quiz);
+    });*/
+    let selectedUsersIds = selectedUsers.map(u => u.id);
+    console.log("ID");
+    console.log(selectedUsersIds);
+    this.quizService.affectQuizToUsers(selectedUsersIds, this.quiz).subscribe(result => {
       console.log(result);
     });
   }

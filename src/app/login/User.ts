@@ -1,12 +1,12 @@
-import {QuizUserAssociation} from "../information/QuizUserAssociation";
+import { Quiz } from "../add-quiz/quiz";
 /**
  * Created by bougsid.ayoub on 2/28/2017.
  */
 
 export class User {
-  id: number;
+  id: string;
   username: string;
   password: string;
-  quizzes: Array<QuizUserAssociation> = new Array<QuizUserAssociation>();
+  quizzes: Array<Quiz> = new Array<Quiz>();
 
 }

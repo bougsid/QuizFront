@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {Quiz} from "./quiz";
-import {AddQuizService} from "./add-quiz.service";
-import {Question} from "../add-question/question";
+import { Component, OnInit } from '@angular/core';
+import { Quiz } from "./quiz";
+import { AddQuizService } from "./add-quiz.service";
+import { Question } from "../add-question/question";
 
 @Component({
   selector: 'app-add-quiz',
@@ -29,7 +29,7 @@ export class AddQuizComponent implements OnInit {
   }
 
   addQuiz(event) {
-    this.quiz.duration.seconds = this.durationToSeconds();
+    this.quiz.duration = this.durationToSeconds();
     console.log(JSON.stringify(this.quiz));
     this.addQuizService.addQuiz(this.quiz).subscribe(result => {
       this.quiz = new Quiz();

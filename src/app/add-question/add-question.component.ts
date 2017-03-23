@@ -1,7 +1,8 @@
-import {Component, OnInit, Input} from '@angular/core';
-import {AddQuestionService} from "./add-question.service";
-import {Question} from "./question";
-import {Option} from "./Option";
+import { Component, OnInit, Input } from '@angular/core';
+import { AddQuestionService } from "./add-question.service";
+import { Question } from "./question";
+import { Option } from "./Option";
+import { Subject } from "./subject";
 
 @Component({
   selector: 'add-question',
@@ -12,12 +13,21 @@ export class AddQuestionComponent implements OnInit {
 
   @Input()
   private question: Question = new Question();
-
-
+  private subjects: Array<Subject>;
+  private levels: Array<{ level: string, name: string }> = new Array(
+    { level: "BASIC", name: "Basic" },
+    { level: "INTERMIDIATE", name: "Intermidiate" },
+    { level: "ADVANCED", name: "Advanced" }
+  );
   constructor(private addQuestionService: AddQuestionService) {
+
   }
 
   ngOnInit() {
+    this.addQuestionService.getSubjects().subscribe(result => {
+      console.log(result);
+      this.subjects = result;
+    });
   }
 
   addQuestion(event) {
